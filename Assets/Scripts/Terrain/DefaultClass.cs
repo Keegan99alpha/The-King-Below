@@ -24,6 +24,11 @@ public class DefaultClass : BasePieceClass
         set;
     }
 
+    protected virtual void Awake()
+    {
+        dug = isDug;
+    }
+
     protected virtual void Start()
     {
         dugScale = 0.2f;

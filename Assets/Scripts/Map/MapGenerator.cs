@@ -24,6 +24,7 @@ public class MapGenerator : MonoBehaviour
 
     void Start()
     {
+        //Ensures at least one prefab type is loaded
         mapSpace = new BasePieceClass[mapSize, mapSize];
         if (defaultPrefab == null)
         {

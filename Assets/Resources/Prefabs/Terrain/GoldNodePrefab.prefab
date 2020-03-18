@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3785245041411227673
+--- !u!1 &2127509358523186371
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,12 +8,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3785245041411227677}
-  - component: {fileID: 3785245041411227676}
-  - component: {fileID: 3785245041411227679}
-  - component: {fileID: 3785245041411227678}
-  - component: {fileID: 4569343430195103481}
-  - component: {fileID: 3785245041411227672}
+  - component: {fileID: 2127509358523186375}
+  - component: {fileID: 2127509358523186374}
+  - component: {fileID: 2127509358523186373}
+  - component: {fileID: 2127509358523186372}
+  - component: {fileID: 1614570779750218275}
+  - component: {fileID: 2127509358523186370}
   m_Layer: 0
   m_Name: GoldNodePrefab
   m_TagString: GoldNode
@@ -21,13 +21,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3785245041411227677
+--- !u!4 &2127509358523186375
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3785245041411227673}
+  m_GameObject: {fileID: 2127509358523186371}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -35,21 +35,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3785245041411227676
+--- !u!33 &2127509358523186374
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3785245041411227673}
+  m_GameObject: {fileID: 2127509358523186371}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &3785245041411227679
+--- !u!23 &2127509358523186373
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3785245041411227673}
+  m_GameObject: {fileID: 2127509358523186371}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -81,39 +81,39 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &3785245041411227678
+--- !u!65 &2127509358523186372
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3785245041411227673}
+  m_GameObject: {fileID: 2127509358523186371}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &4569343430195103481
+--- !u!65 &1614570779750218275
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3785245041411227673}
+  m_GameObject: {fileID: 2127509358523186371}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3785245041411227672
+--- !u!114 &2127509358523186370
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3785245041411227673}
+  m_GameObject: {fileID: 2127509358523186371}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c7618f6d95962a4f8131b2a473ccc41, type: 3}
@@ -122,5 +122,9 @@ MonoBehaviour:
   normalMaterial: {fileID: 2100000, guid: cbaac57786eb7d54fbd59ffd21a77311, type: 2}
   borderMaterial: {fileID: 2100000, guid: 3c5ffc9f2959f0449b5a3c0ea073fd5a, type: 2}
   cornerMaterial: {fileID: 2100000, guid: 61d606e59864c9949b0cdae92c38bcf5, type: 2}
+  isDug: 0
   goldNode: {fileID: 2100000, guid: 8a0fe7a7a0c94f44d9f5470cddfb4cd7, type: 2}
+  logist: {fileID: 5864793591148320697, guid: f8eefd46e18bec344bcfc45f6db349fb, type: 3}
   goldAmount: 0
+  miningAmount: 0
+  miningShow: 0

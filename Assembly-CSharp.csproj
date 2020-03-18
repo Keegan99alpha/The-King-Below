@@ -64,9 +64,13 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera\CameraManager.cs" />
     <Compile Include="Assets\Scripts\Camera\ClickManager.cs" />
+    <Compile Include="Assets\Scripts\Camera\TestClickManager.cs" />
+    <Compile Include="Assets\Scripts\Creatures\Cube.cs" />
+    <Compile Include="Assets\Scripts\Creatures\Pathing.cs" />
     <Compile Include="Assets\Scripts\Creatures\Workers\BasicWorker.cs" />
     <Compile Include="Assets\Scripts\Creatures\Workers\WorkerManager.cs" />
     <Compile Include="Assets\Scripts\Map\MapGenerator.cs" />
+    <Compile Include="Assets\Scripts\PlayerUI\Logistics.cs" />
     <Compile Include="Assets\Scripts\Terrain\BasePieceClass.cs" />
     <Compile Include="Assets\Scripts\Terrain\CenterPiece.cs" />
     <Compile Include="Assets\Scripts\Terrain\DefaultClass.cs" />

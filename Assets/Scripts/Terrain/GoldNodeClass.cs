@@ -10,7 +10,9 @@ public class GoldNodeClass : DefaultClass
     [SerializeField]
     private int miningAmount;
     [SerializeField]
-    private bool miningShow; 
+    private bool miningShow;
+    [SerializeField]
+    private Logistics logist;
 
     private IEnumerator mineTimer;
 
@@ -34,6 +36,7 @@ public class GoldNodeClass : DefaultClass
     }
     private IEnumerator miningTime()
     {
+        //while engaged, take away gold and send it to the player inventory at set intervals. If depleted, dig the node.
         while (true)
         {
             while (mining)
@@ -41,6 +44,7 @@ public class GoldNodeClass : DefaultClass
                 print("Mining");
                 yield return new WaitForSeconds(2.0f);
                 gold -= miningAmount;
+                logist.playerGold += miningAmount;
                 if (gold <= 0 && dug == false)
                 {
                     StopCoroutine(miningTime());
@@ -56,6 +60,8 @@ public class GoldNodeClass : DefaultClass
 
     new void Start()
     {
+        //Find the player inventory manager and get the script used to track gold
+        logist = GameObject.Find("UnderlordManager").GetComponent<Logistics>();
         dugScale = 0.2f;
         defaultScale = 1.0f;
         gameObject.GetComponent<MeshRenderer>().material = goldNode;

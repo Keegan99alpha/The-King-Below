@@ -7,6 +7,7 @@ public class BasicWorker : MonoBehaviour
     private int hp;
     [SerializeField]
     private float moveSpeed;
+    public int workerIndex;
     private BasePieceClass target;
     // Start is called before the first frame update
     void Start()
