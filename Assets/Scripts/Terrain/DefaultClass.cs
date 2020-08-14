@@ -45,6 +45,7 @@ public class DefaultClass : BasePieceClass
         if (dug == true)
         {
             isDug = true;
+            gameObject.layer = 8;
             //change scale and then move the tile down half the scale. e.g. a scale of 0.2 takes 0.4 from either end for a total of 0.8, but it should only move down
             //one sides worth to stay at the same floor height.
             transform.localScale = new Vector3(defaultScale, dugScale, defaultScale);
@@ -53,6 +54,7 @@ public class DefaultClass : BasePieceClass
         else
         {
             isDug = false;
+            gameObject.layer = 0;
             //move back up the same amount it moved down, then reset the scale.
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + ((defaultScale - transform.localScale.y) / 2), transform.localPosition.z);
             transform.localScale = new Vector3(defaultScale, defaultScale, defaultScale);

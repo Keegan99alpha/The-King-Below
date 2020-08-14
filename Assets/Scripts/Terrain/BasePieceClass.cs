@@ -9,6 +9,11 @@ public class BasePieceClass : MonoBehaviour
     public Material borderMaterial;
     public Material cornerMaterial;
 
+    public BasePieceClass()
+    {
+
+    }
+
     //contructor for tiles that don't care about edges/borders
     public BasePieceClass(BasePieceClass above, BasePieceClass below, BasePieceClass left, BasePieceClass right)
     {

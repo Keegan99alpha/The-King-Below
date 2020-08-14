@@ -1,20 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TestClickManager : MonoBehaviour
 {
     [SerializeField]
     private WorkerManager workers;
+    private NavMeshSurface mapMesh;
     // Start is called before the first frame update
     void Start()
     {
-
+        mapMesh = GameObject.Find("Blocks").GetComponent<NavMeshSurface>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            mapMesh.BuildNavMesh();
+        }
         if (Input.GetMouseButtonDown(0))
         { // if left button pressed...
             Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
