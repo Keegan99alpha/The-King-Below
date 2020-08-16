@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
 
 public class WorkerManager : MonoBehaviour
 {
@@ -18,17 +20,26 @@ public class WorkerManager : MonoBehaviour
     [SerializeField]
     private List<BasicWorker> workers;
 
+    private NavMeshAgent agent;
+    private RaycastHit hit;
+    private Vector3 currentPos;
+    private float newY;
+    private Vector3 castpos;
+
     private BasicWorker cloner;
     private int filledIndexCheck;
 
     void Start()
     {
         workerLimit = 10;
+        castpos = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
     }
 
-    private void assignWorker(GameObject target)
+    public void assignWorker(GameObject target)
     {
-        
+        agent = workers[0].GetComponent<NavMeshAgent>();
+        print(agent.isOnNavMesh);
+        agent.destination = target.transform.position;
     }   
 
     private void updateWorkerCount(List<BasicWorker> workers, bool add, int index)
@@ -58,7 +69,13 @@ public class WorkerManager : MonoBehaviour
             else
             {
                 print("not at max/open slots");
-                cloner = Instantiate(prefab, new Vector3(0, 3, 0), Quaternion.identity, gameObject.transform);
+                if (Physics.Raycast(transform.position, castpos, out hit))
+                {
+                    float distanceToGround = hit.distance;
+                    Vector3 currentPos = transform.position;
+                    newY = currentPos.y - distanceToGround;
+                }                 
+                cloner = Instantiate(prefab, new Vector3(currentPos.x, newY, currentPos.z), Quaternion.identity);
             }
             //If there is a spare slot
             if (filledIndexCheck < workers.Count)
@@ -124,7 +141,7 @@ public class WorkerManager : MonoBehaviour
         if (removeWorker == true)
         {
             removeWorker = false;
-            updateWorkerCount(workers, false, 2);
+            updateWorkerCount(workers, false, 0);
         }
         if (removeLastWorker == true)
         {

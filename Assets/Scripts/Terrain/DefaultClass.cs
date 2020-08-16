@@ -59,6 +59,7 @@ public class DefaultClass : BasePieceClass
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + ((defaultScale - transform.localScale.y) / 2), transform.localPosition.z);
             transform.localScale = new Vector3(defaultScale, defaultScale, defaultScale);
         }
+        transform.parent.hasChanged = true;
     }
 
     void Update()

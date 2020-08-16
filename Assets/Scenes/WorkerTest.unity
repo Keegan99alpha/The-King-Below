@@ -287,6 +287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 624755202}
   - component: {fileID: 624755203}
+  - component: {fileID: 624755204}
   m_Layer: 0
   m_Name: Blocks
   m_TagString: Untagged
@@ -302,7 +303,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 624755201}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalPosition: {x: 0.5, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4922871671050300975}
@@ -373,6 +374,24 @@ MonoBehaviour:
   m_VoxelSize: 0.1
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: ff350581239bd5946ae5370876026cfa, type: 2}
+--- !u!114 &624755204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624755201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85200ca21cb737a4d8819e9b036d9046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  addWorker: 0
+  removeWorker: 0
+  removeLastWorker: 0
+  prefab: {fileID: 5354780619204522439, guid: b645b306611f66148bcbad5433109f22, type: 3}
+  workerLimit: 10
+  workers: []
 --- !u!1 &962260562
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,7 +852,7 @@ MonoBehaviour:
   normalMaterial: {fileID: 2100000, guid: cbaac57786eb7d54fbd59ffd21a77311, type: 2}
   borderMaterial: {fileID: 2100000, guid: 3c5ffc9f2959f0449b5a3c0ea073fd5a, type: 2}
   cornerMaterial: {fileID: 2100000, guid: 61d606e59864c9949b0cdae92c38bcf5, type: 2}
-  isDug: 0
+  isDug: 1
 --- !u!114 &2157059892438207814
 MonoBehaviour:
   m_ObjectHideFlags: 0
