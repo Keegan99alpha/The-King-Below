@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class TestClickManager : MonoBehaviour
 {
-    [SerializeField]
     private WorkerManager workers;
     private GameObject mapBlocks;
     private NavMeshSurface mapMesh;

@@ -19,11 +19,10 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.mouseScrollDelta.y != 0)
+        lastPos = pos;
+        if (Input.mouseScrollDelta.y != 0)
         {
-            lastPos = pos;
             transform.Translate(new Vector3(0, 0, Input.mouseScrollDelta.y * scrollScale));
-            pos = transform.position;
             if (transform.position.y > 5.0f)
             {
                 pos = lastPos;            
@@ -35,6 +34,7 @@ public class CameraManager : MonoBehaviour
                 transform.position = pos;
             }
         }
+
         if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.position += (new Vector3(speed * Time.deltaTime, 0, 0));
@@ -51,5 +51,6 @@ public class CameraManager : MonoBehaviour
         {
             transform.position += (new Vector3(0, 0, speed * Time.deltaTime));
         }
+        pos = transform.position;
     }
 }

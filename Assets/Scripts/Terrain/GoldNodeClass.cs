@@ -34,14 +34,16 @@ public class GoldNodeClass : DefaultClass
         get;
         set;
     }
+
+    /*move mining timer to individual workers, maintain gold log update inside node.
     private IEnumerator miningTime()
     {
         //while engaged, take away gold and send it to the player inventory at set intervals. If depleted, dig the node.
         while (true)
         {
+            //check if this is doubled code
             while (mining)
             {
-                print("Mining");
                 yield return new WaitForSeconds(2.0f);
                 gold -= miningAmount;
                 logist.playerGold += miningAmount;
@@ -56,6 +58,18 @@ public class GoldNodeClass : DefaultClass
             }
             yield return null;
         }
+    }*/
+
+    public void updateGold()
+    {
+        gold -= miningAmount;
+        logist.playerGold += miningAmount;
+        if (gold <= 0 && dug == false)
+        {
+            gold = 0;
+            dug = true;
+            refreshPosition();
+        }
     }
 
     new void Start()
@@ -67,8 +81,8 @@ public class GoldNodeClass : DefaultClass
         gameObject.GetComponent<MeshRenderer>().material = goldNode;
         gold = 500;
         miningAmount = 5;
-        mineTimer = miningTime();
-        StartCoroutine(mineTimer);
+        //mineTimer = miningTime();
+        //StartCoroutine(mineTimer);
     }
 
     void Update()

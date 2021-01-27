@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-
 public class WorkerManager : MonoBehaviour
 {
     [SerializeField]
@@ -20,9 +19,10 @@ public class WorkerManager : MonoBehaviour
     [SerializeField]
     private List<BasicWorker> workers;
 
-    private NavMeshAgent agent;
+    private List<GameObject> items_terrains_active;
+
     private RaycastHit hit;
-    private Vector3 currentPos;
+    //private Vector3 currentPos;
     private float newY;
     private Vector3 castpos;
 
@@ -31,16 +31,40 @@ public class WorkerManager : MonoBehaviour
 
     void Start()
     {
+        items_terrains_active = new List<GameObject>();
         workerLimit = 10;
-        castpos = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
+        castpos = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
     }
 
+    //assign a worker to a target tile.
     public void assignWorker(GameObject target)
     {
+        workers[0].workerTask(target);
+        /*
         agent = workers[0].GetComponent<NavMeshAgent>();
-        print(agent.isOnNavMesh);
         agent.destination = target.transform.position;
+        */
     }   
+
+    //keep track of when a worker has reached a location or finished a task.
+    public void workerJobTracker(NavMeshAgent worker)
+    {
+        
+    }
+
+    public void worldJobTracker(GameObject item_terrain)
+    {
+        if (items_terrains_active.Contains(item_terrain))
+        {
+            items_terrains_active.Remove(item_terrain);
+            //resign worker;
+        }
+        else
+        {
+            items_terrains_active.Add(item_terrain);
+            assignWorker(item_terrain);
+        }
+    }
 
     private void updateWorkerCount(List<BasicWorker> workers, bool add, int index)
     {
@@ -69,13 +93,13 @@ public class WorkerManager : MonoBehaviour
             else
             {
                 print("not at max/open slots");
-                if (Physics.Raycast(transform.position, castpos, out hit))
+                if (Physics.Raycast(castpos, transform.TransformDirection(Vector3.down), out hit))
                 {
-                    float distanceToGround = hit.distance;
-                    Vector3 currentPos = transform.position;
-                    newY = currentPos.y - distanceToGround;
-                }                 
-                cloner = Instantiate(prefab, new Vector3(currentPos.x, newY, currentPos.z), Quaternion.identity);
+                    //fix this//
+                    newY = hit.point.y + prefab.GetComponent<Renderer>().bounds.size.y/2;
+                    print(newY);
+                }
+                cloner = Instantiate(prefab, new Vector3(transform.position.x, newY, transform.position.z), Quaternion.identity);
             }
             //If there is a spare slot
             if (filledIndexCheck < workers.Count)
@@ -133,7 +157,7 @@ public class WorkerManager : MonoBehaviour
 
     void Update()
     {
-        if(addWorker == true)
+        if(addWorker == true || Input.GetKeyDown(KeyCode.L))
         {
             addWorker = false;
             updateWorkerCount(workers, true, -1);
@@ -148,5 +172,11 @@ public class WorkerManager : MonoBehaviour
             removeLastWorker = false;
             updateWorkerCount(workers, false, -1);
         }
+        //should be refering to target transform
+        /*if(transform.position == agent.destination && agent.destination != null)
+        {
+            print("hi");
+            agent.ResetPath();
+        }*/
     }
 }
