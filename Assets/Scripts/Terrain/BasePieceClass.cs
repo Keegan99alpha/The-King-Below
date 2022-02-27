@@ -8,6 +8,7 @@ public class BasePieceClass : MonoBehaviour
     public Material normalMaterial;
     public Material borderMaterial;
     public Material cornerMaterial;
+    public Material selectedTileMaterial;
 
     public BasePieceClass()
     {

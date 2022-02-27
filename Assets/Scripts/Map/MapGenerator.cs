@@ -94,7 +94,7 @@ public class MapGenerator : MonoBehaviour
                 int emptyNeighbours = 4;
                 if (j - 1 >= 0 && mapSpace[i, j - 1] != null)
                 {
-                    mapSpace[i, j].above = mapSpace[i, j - 1];
+                    mapSpace[i, j].below = mapSpace[i, j - 1];
                     emptyNeighbours -= 1;
                 }
                 if (j + 1 < mapSpace.GetLength(1) && mapSpace[i, j + 1] != null)
@@ -104,12 +104,12 @@ public class MapGenerator : MonoBehaviour
                 }
                 if (i - 1 >= 0 && mapSpace[i - 1, j] != null)
                 {
-                    mapSpace[i, j].above = mapSpace[i - 1, j];
+                    mapSpace[i, j].left = mapSpace[i - 1, j];
                     emptyNeighbours -= 1;
                 }
                 if (i + 1 < mapSpace.GetLength(0) && mapSpace[i + 1, j] != null)
                 {
-                    mapSpace[i, j].above = mapSpace[i + 1, j];
+                    mapSpace[i, j].right = mapSpace[i + 1, j];
                     emptyNeighbours -= 1;
                 }
 

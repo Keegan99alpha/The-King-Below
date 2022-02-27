@@ -38,7 +38,7 @@ public class TestClickManager : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                workers.assignWorker(hit.transform.gameObject);
+                //workers.assignWorker(hit.transform.gameObject);
             }
         }
 

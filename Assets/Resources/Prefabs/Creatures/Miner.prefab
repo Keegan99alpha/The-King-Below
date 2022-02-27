@@ -126,6 +126,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0
   workerIndex: 0
+  target: {fileID: 0}
+  hasTask: 0
 --- !u!195 &4023204624769561366
 NavMeshAgent:
   m_ObjectHideFlags: 0

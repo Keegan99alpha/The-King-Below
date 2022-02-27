@@ -119,4 +119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e09ebabb6c657d943855e810f2519df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalMaterial: {fileID: 0}
+  borderMaterial: {fileID: 0}
+  cornerMaterial: {fileID: 0}
+  selectedTileMaterial: {fileID: 0}
   isDug: 0
+  slotPrefab: {fileID: 1875489831932883784, guid: df61368deb0d5ec4b9e9363384174076,
+    type: 3}

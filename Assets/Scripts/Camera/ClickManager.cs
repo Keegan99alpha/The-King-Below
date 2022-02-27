@@ -39,7 +39,11 @@ public class ClickManager : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                workers.worldJobTracker(hit.transform.gameObject);
+                GameObject target = hit.transform.gameObject;
+                if (target.CompareTag("Terrain") || target.CompareTag("GoldNode"))
+                {
+                    workers.worldJobTracker(hit.transform.gameObject);
+                }
             }
         }
         if (Input.GetMouseButtonDown(0))

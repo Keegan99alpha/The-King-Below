@@ -123,7 +123,11 @@ MonoBehaviour:
   normalMaterial: {fileID: 2100000, guid: cbaac57786eb7d54fbd59ffd21a77311, type: 2}
   borderMaterial: {fileID: 2100000, guid: 3c5ffc9f2959f0449b5a3c0ea073fd5a, type: 2}
   cornerMaterial: {fileID: 2100000, guid: 61d606e59864c9949b0cdae92c38bcf5, type: 2}
+  selectedTileMaterial: {fileID: 2100000, guid: 53a53ffaa2fd717458e926343d6d3bf0,
+    type: 2}
   isDug: 0
+  slotPrefab: {fileID: 1875489831932883784, guid: df61368deb0d5ec4b9e9363384174076,
+    type: 3}
 --- !u!1 &6804899446631493259
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,6 +185,6 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.1
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 0}

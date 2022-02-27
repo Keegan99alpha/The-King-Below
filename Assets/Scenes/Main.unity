@@ -252,14 +252,14 @@ MonoBehaviour:
   terrainPrefabs:
   - {fileID: 2157059892807183297, guid: 0f1d6ebe938d8804982d9b8096fb0759, type: 3}
   - {fileID: 2127509358523186370, guid: 7244b47244653dd4bacbc5bfb1c631f5, type: 3}
-  - {fileID: 0}
   - {fileID: 2157059892807183297, guid: 0f1d6ebe938d8804982d9b8096fb0759, type: 3}
-  - {fileID: 3785245041411227672, guid: 7244b47244653dd4bacbc5bfb1c631f5, type: 3}
+  - {fileID: 2157059892807183297, guid: 0f1d6ebe938d8804982d9b8096fb0759, type: 3}
+  - {fileID: 2157059892807183297, guid: 0f1d6ebe938d8804982d9b8096fb0759, type: 3}
   defaultPrefab: {fileID: 2157059892807183297, guid: 0f1d6ebe938d8804982d9b8096fb0759,
     type: 3}
   centerPrefab: {fileID: -4373467374090603587, guid: 05ee072cda4c3e34e9c292e77d8de0a2,
     type: 3}
-  mapSize: 15
+  mapSize: 11
 --- !u!4 &683487306
 Transform:
   m_ObjectHideFlags: 0

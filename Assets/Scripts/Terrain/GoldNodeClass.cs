@@ -16,9 +16,8 @@ public class GoldNodeClass : DefaultClass
 
     private IEnumerator mineTimer;
 
-    public GoldNodeClass(bool dug, bool mining, int gold, DefaultClass above, DefaultClass below, DefaultClass left, DefaultClass right) : base(above, below, left, right)
+    public GoldNodeClass(bool mining, int gold, DefaultClass above, DefaultClass below, DefaultClass left, DefaultClass right) : base(above, below, left, right)
     {
-        this.dug = dug;
         this.gold = gold;
         this.mining = mining;
     }
@@ -59,6 +58,21 @@ public class GoldNodeClass : DefaultClass
             yield return null;
         }
     }*/
+    public bool goldCheck()
+    {
+        if(gold > 0)
+        {
+            if(gold < miningAmount)
+            {
+                miningAmount = gold;
+            }
+            return (true);
+        }
+        else
+        {
+            return (false);
+        }
+    }
 
     public void updateGold()
     {
@@ -81,6 +95,8 @@ public class GoldNodeClass : DefaultClass
         gameObject.GetComponent<MeshRenderer>().material = goldNode;
         gold = 500;
         miningAmount = 5;
+        startMaterial = gameObject.GetComponent<MeshRenderer>().material;
+        placeDigSlots();
         //mineTimer = miningTime();
         //StartCoroutine(mineTimer);
     }

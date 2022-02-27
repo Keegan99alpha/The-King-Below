@@ -19,7 +19,10 @@ public class WorkerManager : MonoBehaviour
     [SerializeField]
     private List<BasicWorker> workers;
 
-    private List<GameObject> items_terrains_active;
+    public List<GameObject> items_terrains_active;
+    public List<GameObject> items_terrains_reachable_slots;
+    public List<GameObject> items_terrains_reachable_unfilled;
+
 
     private RaycastHit hit;
     //private Vector3 currentPos;
@@ -29,40 +32,97 @@ public class WorkerManager : MonoBehaviour
     private BasicWorker cloner;
     private int filledIndexCheck;
 
+    private GameObject random;
+
+    private IEnumerator workerCheckUpTimer;
+
     void Start()
     {
         items_terrains_active = new List<GameObject>();
         workerLimit = 10;
-        castpos = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
+        castpos = new Vector3(transform.position.x, Mathf.Infinity, transform.position.z);
+        workerCheckUpTimer = workerCheckUp();
+        StartCoroutine(workerCheckUpTimer);
     }
 
-    //assign a worker to a target tile.
-    public void assignWorker(GameObject target)
+    public void aquireReachableSlots()
     {
-        workers[0].workerTask(target);
-        /*
-        agent = workers[0].GetComponent<NavMeshAgent>();
-        agent.destination = target.transform.position;
-        */
-    }   
 
-    //keep track of when a worker has reached a location or finished a task.
-    public void workerJobTracker(NavMeshAgent worker)
-    {
-        
     }
 
+    //keep track of all worker task.
+    public void workerJobTracker()
+    {
+        //check each worker for a finished task - if it declares it no longer has a task but has a target object, remove object from world task list.
+        foreach (BasicWorker alive in workers)
+        {
+            if (items_terrains_active.Contains(alive.target) && !alive.hasTask)
+            {
+                items_terrains_active.Remove(alive.target);
+            }
+        }
+        if (items_terrains_active.Count >= 1)
+        {
+            foreach (BasicWorker alive in workers)
+            {
+                if (alive.hasTask)
+                {
+                    //gotta call job tracker when the worker finishes to actually resign them, otherwise this doesn't run until new tasks are added
+                    //removed !items_terrains_active.Contains(alive.target) || as it was seemingly redundant
+
+                    //if worker has a task but it's not longer in the task list (also represented by selected status), resign it and give it a different task.
+                    if (alive.target.GetComponent<DefaultClass>().selected == false)
+                    {
+                        alive.workerResign();
+                        alive.workerTask(pickRandomTask());
+                        print("Assigned task after resigning old task");
+                    }
+                }
+                //if worker has no task, provide one.
+                else if (!alive.hasTask)
+                {
+                    alive.workerTask(pickRandomTask());
+                    print("Assigned task due to no current task");
+                }
+            }
+        }
+    }
+
+    public GameObject pickRandomTask()
+    {
+        if (items_terrains_active.Count == 0)
+        {
+            Debug.LogError("Cannot pick task: There are no active tasks.");
+            return null;
+        }
+        return items_terrains_active[Random.Range(0, items_terrains_active.Count)];
+    }
+
+    //keep track of user selected worker tasks
     public void worldJobTracker(GameObject item_terrain)
     {
         if (items_terrains_active.Contains(item_terrain))
         {
+            item_terrain.GetComponent<DefaultClass>().selected = false;
+            item_terrain.GetComponent<DefaultClass>().toggleHighlight();
             items_terrains_active.Remove(item_terrain);
-            //resign worker;
         }
         else
         {
             items_terrains_active.Add(item_terrain);
-            assignWorker(item_terrain);
+            item_terrain.GetComponent<DefaultClass>().selected = true;
+            item_terrain.GetComponent<DefaultClass>().toggleHighlight();
+            //assignWorker(item_terrain);
+        }
+        workerJobTracker();
+    }
+
+    private IEnumerator workerCheckUp()
+    {
+        while (true)
+        {
+            workerJobTracker();
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
@@ -96,7 +156,7 @@ public class WorkerManager : MonoBehaviour
                 if (Physics.Raycast(castpos, transform.TransformDirection(Vector3.down), out hit))
                 {
                     //fix this//
-                    newY = hit.point.y + prefab.GetComponent<Renderer>().bounds.size.y/2;
+                    newY = hit.point.y + prefab.GetComponent<Renderer>().bounds.size.y / 2;
                     print(newY);
                 }
                 cloner = Instantiate(prefab, new Vector3(transform.position.x, newY, transform.position.z), Quaternion.identity);
@@ -117,7 +177,7 @@ public class WorkerManager : MonoBehaviour
         }
 
         //Remove a worker
-        if(add == false)
+        if (add == false)
         {
             //If the index is within the lists range, delete the specific worker
             if (index >= 0 && index < workers.Count)
@@ -157,7 +217,7 @@ public class WorkerManager : MonoBehaviour
 
     void Update()
     {
-        if(addWorker == true || Input.GetKeyDown(KeyCode.L))
+        if (addWorker == true || Input.GetKeyDown(KeyCode.L))
         {
             addWorker = false;
             updateWorkerCount(workers, true, -1);
@@ -172,11 +232,8 @@ public class WorkerManager : MonoBehaviour
             removeLastWorker = false;
             updateWorkerCount(workers, false, -1);
         }
-        //should be refering to target transform
-        /*if(transform.position == agent.destination && agent.destination != null)
-        {
-            print("hi");
-            agent.ResetPath();
-        }*/
+
+        //move out of update later
+        //workerJobTracker();
     }
 }
